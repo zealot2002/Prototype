@@ -7,7 +7,7 @@ const navs = [
   { key: 'home', label: '首页', path: '/home', icon: <AiOutlineHome size={24} /> },
   { key: 'mall', label: '商城', path: '/mall', icon: <AiOutlineShop size={24} /> },
   { key: 'cart', label: '购物车', path: '/cart', icon: <AiOutlineShoppingCart size={24} /> },
-  { key: 'social', label: '社交', path: '/social', icon: <AiOutlineMessage size={24} /> },
+  { key: 'social', label: '发现', path: '/social', icon: <AiOutlineMessage size={24} /> },
   { key: 'profile', label: '我的', path: '/profile', icon: <AiOutlineUser size={24} /> },
 ];
 

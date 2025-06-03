@@ -51,9 +51,32 @@ const HomePage: React.FC = () => {
           <span style={{ fontSize: 20, fontWeight: 600 }}>热门服务</span>
           <span style={{ color: '#1890ff', cursor: 'pointer', fontSize: 14 }}>更多服务</span>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div
+          style={{
+            display: 'flex',
+            overflowX: 'auto',
+            gap: 16,
+            paddingBottom: 8,
+            WebkitOverflowScrolling: 'touch',
+          }}
+        >
           {/* 猫咪qic服务 */}
-          <div style={{ background: '#f5f5f5', borderRadius: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 0, cursor: 'pointer', overflow: 'hidden', minHeight: 180 }} onClick={() => navigate('/qic-intro')}>
+          <div
+            style={{
+              background: '#f5f5f5',
+              borderRadius: 16,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: 0,
+              cursor: 'pointer',
+              overflow: 'hidden',
+              minHeight: 180,
+              flex: '0 0 40vw',
+              maxWidth: 160,
+            }}
+            onClick={() => navigate('/qic-intro')}
+          >
             <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
               <img
                 src="https://img1.baidu.com/it/u=156109097,2559707735&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500"
@@ -67,7 +90,22 @@ const HomePage: React.FC = () => {
             </div>
           </div>
           {/* 猫咪亲人见面 */}
-          <div style={{ background: '#f5f5f5', borderRadius: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 0, cursor: 'pointer', overflow: 'hidden', minHeight: 180 }} onClick={() => navigate('/family-intro')}>
+          <div
+            style={{
+              background: '#f5f5f5',
+              borderRadius: 16,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: 0,
+              cursor: 'pointer',
+              overflow: 'hidden',
+              minHeight: 180,
+              flex: '0 0 40vw',
+              maxWidth: 160,
+            }}
+            onClick={() => navigate('/family-intro')}
+          >
             <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
               <img
                 src="https://img0.baidu.com/it/u=3917813119,440150981&fm=253&fmt=auto&app=120&f=JPEG?w=608&h=453"
@@ -78,6 +116,64 @@ const HomePage: React.FC = () => {
             <div style={{ padding: '12px 8px 8px 8px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <span style={{ fontSize: 16, fontWeight: 500, marginBottom: 4 }}>猫咪亲人见面</span>
               <span style={{ fontSize: 13, color: '#888', textAlign: 'center' }}>与父母亲、姐妹见个面。</span>
+            </div>
+          </div>
+          {/* 猫咪健康保险 */}
+          <div
+            style={{
+              background: '#f5f5f5',
+              borderRadius: 16,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: 0,
+              cursor: 'pointer',
+              overflow: 'hidden',
+              minHeight: 180,
+              flex: '0 0 40vw',
+              maxWidth: 160,
+            }}
+            onClick={() => navigate('/insurance-intro')}
+          >
+            <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
+              <img
+                src="https://img2.baidu.com/it/u=1940013127,3201390960&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+                alt="猫咪健康保险"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 0 }}
+              />
+            </div>
+            <div style={{ padding: '12px 8px 8px 8px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span style={{ fontSize: 16, fontWeight: 500, marginBottom: 4 }}>猫咪健康保险</span>
+              <span style={{ fontSize: 13, color: '#888', textAlign: 'center' }}>守护健康，理赔无忧。</span>
+            </div>
+          </div>
+          {/* 猫咪6个月租赁服务 */}
+          <div
+            style={{
+              background: '#f5f5f5',
+              borderRadius: 16,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: 0,
+              cursor: 'pointer',
+              overflow: 'hidden',
+              minHeight: 180,
+              flex: '0 0 40vw',
+              maxWidth: 160,
+            }}
+            onClick={() => navigate('/rent-intro')}
+          >
+            <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
+              <img
+                src="https://img1.baidu.com/it/u=1404857416,1555204961&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+                alt="猫咪6个月租赁服务"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 0 }}
+              />
+            </div>
+            <div style={{ padding: '12px 8px 8px 8px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span style={{ fontSize: 16, fontWeight: 500, marginBottom: 4 }}>猫咪6个月租赁服务</span>
+              <span style={{ fontSize: 13, color: '#888', textAlign: 'center' }}>灵活陪伴，轻松养猫。</span>
             </div>
           </div>
         </div>

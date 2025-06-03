@@ -19,10 +19,19 @@ interface Post {
   replies: Reply[];
 }
 
+const imageLinks = [
+  'https://img2.baidu.com/it/u=756651747,3692837599&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+  'https://img0.baidu.com/it/u=2448865641,2839481050&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
+  'https://img0.baidu.com/it/u=670391496,676264176&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+  'https://img2.baidu.com/it/u=3864613471,171010667&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+  'https://img2.baidu.com/it/u=2718562740,2388864416&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
+  'https://img1.baidu.com/it/u=2084962530,2457559008&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+];
+
 const samplePosts: Omit<Post, 'id' | 'replies'>[] = [
   {
     content: '每天回家看到猫咪在门口等我，所有的疲惫都消失了。',
-    img: 'https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=400&q=80',
+    img: imageLinks[0],
     user: {
       avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
       nickname: '小橘子',
@@ -32,7 +41,7 @@ const samplePosts: Omit<Post, 'id' | 'replies'>[] = [
   },
   {
     content: '狗狗第一次学会握手，真的太有成就感了！',
-    img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80',
+    img: imageLinks[1],
     user: {
       avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
       nickname: '大壮',
@@ -42,7 +51,7 @@ const samplePosts: Omit<Post, 'id' | 'replies'>[] = [
   },
   {
     content: '猫砂盆要勤快清理，家里才不会有异味。',
-    img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
+    img: imageLinks[2],
     user: {
       avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
       nickname: '猫奴小七',
@@ -52,7 +61,7 @@ const samplePosts: Omit<Post, 'id' | 'replies'>[] = [
   },
   {
     content: '带狗狗去公园玩耍，它开心得像个孩子。',
-    img: 'https://images.unsplash.com/photo-1465101178521-c1a9136a1408?auto=format&fit=crop&w=400&q=80',
+    img: imageLinks[3],
     user: {
       avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
       nickname: '阿布',
@@ -62,7 +71,7 @@ const samplePosts: Omit<Post, 'id' | 'replies'>[] = [
   },
   {
     content: '给猫咪买了新玩具，玩了一下午都不腻。',
-    img: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
+    img: imageLinks[4],
     user: {
       avatar: 'https://randomuser.me/api/portraits/women/12.jpg',
       nickname: '小鱼干',
@@ -72,7 +81,7 @@ const samplePosts: Omit<Post, 'id' | 'replies'>[] = [
   },
   {
     content: '养宠物最大的收获就是每天都很治愈。',
-    img: 'https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=400&q=80',
+    img: imageLinks[5],
     user: {
       avatar: 'https://randomuser.me/api/portraits/men/23.jpg',
       nickname: '治愈星人',
@@ -82,7 +91,7 @@ const samplePosts: Omit<Post, 'id' | 'replies'>[] = [
   },
   {
     content: '狗狗洗澡后香喷喷，抱着睡觉超幸福。',
-    img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80',
+    img: imageLinks[0],
     user: {
       avatar: 'https://randomuser.me/api/portraits/men/56.jpg',
       nickname: '小黑',
@@ -92,7 +101,7 @@ const samplePosts: Omit<Post, 'id' | 'replies'>[] = [
   },
   {
     content: '猫咪喜欢晒太阳，阳光下的它像个小天使。',
-    img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
+    img: imageLinks[1],
     user: {
       avatar: 'https://randomuser.me/api/portraits/women/33.jpg',
       nickname: '暖阳',
@@ -235,9 +244,9 @@ const SocialHome: React.FC<{ posts: Post[]; onAddPost: (post: Post) => void }> =
       {/* 帖子列表 */}
       <div ref={listRef} style={{ flex: 1, overflowY: 'auto', padding: 10, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
         {filteredPosts.map(post => (
-          <div key={post.id} style={{ background: '#fff', borderRadius: 14, boxShadow: '0 2px 8px rgba(0,0,0,0.06)', padding: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative', minHeight: 420, maxHeight: 600 }}>
+          <div key={post.id} style={{ background: '#fff', borderRadius: 14, boxShadow: '0 2px 8px rgba(0,0,0,0.06)', padding: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative', minHeight: 320, maxHeight: 320, height: 320 }}>
             {/* 图片及角标 */}
-            <div style={{ width: '100%', aspectRatio: '1/1.2', background: '#f5f5f5', overflow: 'hidden', position: 'relative' }}>
+            <div style={{ width: '100%', height: 200, background: '#f5f5f5', overflow: 'hidden', position: 'relative' }}>
               <img src={post.img} alt="帖子配图" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               {post.tag && (
                 <span style={{ position: 'absolute', left: 8, top: 8, background: '#ff385c', color: '#fff', fontSize: 12, borderRadius: 8, padding: '2px 8px', fontWeight: 500 }}>{post.tag}</span>
@@ -245,7 +254,7 @@ const SocialHome: React.FC<{ posts: Post[]; onAddPost: (post: Post) => void }> =
             </div>
             {/* 内容+用户+点赞 */}
             <div style={{ padding: '8px 10px 10px 10px', display: 'flex', flexDirection: 'column', flex: 1, overflow: 'auto' }}>
-              <div style={{ fontSize: 15, color: '#222', marginBottom: 6, lineHeight: 1.5, fontWeight: 500, minHeight: 36, maxHeight: 120, overflow: 'auto', textOverflow: 'ellipsis' }}>{post.content}</div>
+              <div style={{ fontSize: 15, color: '#222', marginBottom: 6, lineHeight: 1.5, fontWeight: 500, minHeight: 36, maxHeight: 72, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>{post.content}</div>
               <div style={{ display: 'flex', alignItems: 'center', marginTop: 'auto' }}>
                 <img src={post.user.avatar} alt="头像" style={{ width: 24, height: 24, borderRadius: '50%', objectFit: 'cover', marginRight: 6, border: '1.5px solid #fff', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }} />
                 <span style={{ fontSize: 14, color: '#666', marginRight: 8 }}>{post.user.nickname}</span>

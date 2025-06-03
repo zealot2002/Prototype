@@ -8,6 +8,9 @@ import ProfilePage from './pages/ProfilePage';
 import CartPage from './pages/CartPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import ConfirmOrderPage from './pages/ConfirmOrderPage';
+import QicIntroPage from './pages/QicIntroPage';
+import QicAppointmentPage from './pages/QicAppointmentPage';
+import CatFamilyIntroPage from './pages/CatFamilyIntroPage';
 
 const App: React.FC = () => {
   return (
@@ -22,6 +25,9 @@ const App: React.FC = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/confirm-order" element={<ConfirmOrderPage />} />
+          <Route path="/qic-intro" element={<QicIntroPage />} />
+          <Route path="/appointment" element={<QicAppointmentPage />} />
+          <Route path="/family-intro" element={<CatFamilyIntroPage />} />
         </Route>
       </Routes>
     </Router>

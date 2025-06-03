@@ -53,7 +53,7 @@ const HomePage: React.FC = () => {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           {/* 猫咪qic服务 */}
-          <div style={{ background: '#f5f5f5', borderRadius: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 0, cursor: 'pointer', overflow: 'hidden', minHeight: 180 }}>
+          <div style={{ background: '#f5f5f5', borderRadius: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 0, cursor: 'pointer', overflow: 'hidden', minHeight: 180 }} onClick={() => navigate('/qic-intro')}>
             <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
               <img
                 src="https://img1.baidu.com/it/u=156109097,2559707735&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500"
@@ -67,7 +67,7 @@ const HomePage: React.FC = () => {
             </div>
           </div>
           {/* 猫咪亲人见面 */}
-          <div style={{ background: '#f5f5f5', borderRadius: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 0, cursor: 'pointer', overflow: 'hidden', minHeight: 180 }}>
+          <div style={{ background: '#f5f5f5', borderRadius: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 0, cursor: 'pointer', overflow: 'hidden', minHeight: 180 }} onClick={() => navigate('/family-intro')}>
             <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
               <img
                 src="https://img0.baidu.com/it/u=3917813119,440150981&fm=253&fmt=auto&app=120&f=JPEG?w=608&h=453"

@@ -7,6 +7,7 @@
 .main-content {
   flex: 1;
   overflow: auto;
+  padding-bottom: 56px;
 }
 
 .bottom-nav {
@@ -14,6 +15,13 @@
   height: 56px;
   border-top: 1px solid #eee;
   background: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+  padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
 .nav-item {
@@ -24,6 +32,8 @@
   color: #888;
   cursor: pointer;
   transition: color 0.2s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav-item.active {

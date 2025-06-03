@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const products = [
   {
@@ -72,6 +73,7 @@ const tags = ['全部', '热销', '新品', '爆款', '推荐'];
 const MallPage: React.FC = () => {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('全部');
+  const navigate = useNavigate();
 
   const filteredProducts = products.filter(
     (item) =>
@@ -133,7 +135,11 @@ const MallPage: React.FC = () => {
           <div style={{ gridColumn: '1/3', textAlign: 'center', color: '#aaa', marginTop: 32 }}>暂无相关商品</div>
         ) : (
           filteredProducts.map((item) => (
-            <div key={item.id} style={{ background: '#fff', borderRadius: 10, boxShadow: '0 1px 4px rgba(0,0,0,0.04)', padding: 0, minHeight: 260, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'stretch', overflow: 'hidden' }}>
+            <div
+              key={item.id}
+              style={{ background: '#fff', borderRadius: 10, boxShadow: '0 1px 4px rgba(0,0,0,0.04)', padding: 0, minHeight: 260, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'stretch', overflow: 'hidden' }}
+              onClick={() => navigate(`/product/${item.id}`)}
+            >
               <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
                 <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>

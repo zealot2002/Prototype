@@ -6,6 +6,8 @@ import MallPage from './pages/MallPage';
 import SocialPage from './pages/SocialPage';
 import ProfilePage from './pages/ProfilePage';
 import CartPage from './pages/CartPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import ConfirmOrderPage from './pages/ConfirmOrderPage';
 
 const App: React.FC = () => {
   return (
@@ -18,6 +20,8 @@ const App: React.FC = () => {
           <Route path="/social" element={<SocialPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/product/:id" element={<ProductDetailPage />} />
+          <Route path="/confirm-order" element={<ConfirmOrderPage />} />
         </Route>
       </Routes>
     </Router>

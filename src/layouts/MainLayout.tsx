@@ -11,29 +11,35 @@ const navs = [
   { key: 'profile', label: '我的', path: '/profile', icon: <AiOutlineUser size={24} /> },
 ];
 
+const firstLevelRoutes = ['/home', '/mall', '/cart', '/social', '/profile'];
+
 const MainLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const showTabBar = firstLevelRoutes.includes(location.pathname);
 
   return (
     <div className="main-layout">
       <div className="main-content">
         <Outlet />
       </div>
-      <nav className="bottom-nav">
-        {navs.map((nav) => (
-          <div
-            key={nav.key}
-            className={
-              'nav-item' + (location.pathname === nav.path ? ' active' : '')
-            }
-            onClick={() => navigate(nav.path)}
-          >
-            <span className="nav-icon">{nav.icon}</span>
-            <span>{nav.label}</span>
-          </div>
-        ))}
-      </nav>
+      {showTabBar && (
+        <nav className="bottom-nav">
+          {navs.map((nav) => (
+            <div
+              key={nav.key}
+              className={
+                'nav-item' + (location.pathname === nav.path ? ' active' : '')
+              }
+              onClick={() => navigate(nav.path)}
+            >
+              <span className="nav-icon">{nav.icon}</span>
+              <span>{nav.label}</span>
+            </div>
+          ))}
+        </nav>
+      )}
     </div>
   );
 };

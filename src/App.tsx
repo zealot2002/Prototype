@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import MallPage from './pages/MallPage';
 import SocialPage from './pages/SocialPage';
 import ProfilePage from './pages/ProfilePage';
+import CartPage from './pages/CartPage';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
           <Route path="/mall" element={<MallPage />} />
           <Route path="/social" element={<SocialPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Route>
       </Routes>
     </Router>

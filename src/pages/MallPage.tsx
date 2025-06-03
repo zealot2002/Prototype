@@ -5,57 +5,65 @@ const products = [
     id: 1,
     name: '皇家猫粮 2kg',
     price: '¥128',
-    img: 'https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=400&q=80',
+    img: 'https://t15.baidu.com/it/u=1992151386,1024749454&fm=224&app=112&f=JPEG?w=500&h=500',
     tag: '热销',
+    buyers: 1200,
   },
   {
     id: 2,
     name: '猫爬架 多层豪华',
     price: '¥299',
-    img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80',
+    img: 'https://img0.baidu.com/it/u=3700568182,1427988911&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
     tag: '新品',
+    buyers: 980,
   },
   {
     id: 3,
     name: '豆腐猫砂 6L',
     price: '¥39',
-    img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
+    img: 'https://img1.baidu.com/it/u=1923027163,1364216940&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
     tag: '爆款',
+    buyers: 2100,
   },
   {
     id: 4,
     name: '逗猫棒三件套',
     price: '¥19',
-    img: 'https://images.unsplash.com/photo-1465101178521-c1a9136a1408?auto=format&fit=crop&w=400&q=80',
+    img: 'https://img1.baidu.com/it/u=726222788,1494926947&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
     tag: '热销',
+    buyers: 1560,
   },
   {
     id: 5,
     name: '智能饮水机',
     price: '¥159',
-    img: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
+    img: 'https://img0.baidu.com/it/u=906747860,679994589&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
     tag: '推荐',
+    buyers: 800,
   },
   {
     id: 6,
     name: '猫咪自动喂食器',
     price: '¥199',
-    img: 'https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=400&q=80',
+    img: 'https://img0.baidu.com/it/u=989315967,1060868218&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
     tag: '新品',
+    buyers: 1340,
   },
   {
     id: 7,
     name: '宠物背包太空舱',
     price: '¥89',
-    img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80',
+    img: 'https://img1.baidu.com/it/u=2585427602,3353812777&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
     tag: '热销',
+    buyers: 920,
   },
   {
     id: 8,
     name: '猫咪梳毛刷',
     price: '¥29',
-    img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
+    img: 'https://t14.baidu.com/it/u=3574418580,1307549435&fm=224&app=112&f=JPEG?w=500&h=500',
     tag: '爆款',
+    buyers: 600,
   },
 ];
 
@@ -120,20 +128,27 @@ const MallPage: React.FC = () => {
         </div>
       </div>
       {/* 商品列表 */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, padding: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, padding: 16 }}>
         {filteredProducts.length === 0 ? (
           <div style={{ gridColumn: '1/3', textAlign: 'center', color: '#aaa', marginTop: 32 }}>暂无相关商品</div>
         ) : (
           filteredProducts.map((item) => (
-            <div key={item.id} style={{ background: '#fff', borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.04)', overflow: 'hidden', position: 'relative', cursor: 'pointer', transition: 'box-shadow 0.2s', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ width: '100%', aspectRatio: '1/1', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <img src={item.img} alt={item.name} style={{ width: '80%', height: '80%', objectFit: 'cover', borderRadius: 8, boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }} />
+            <div key={item.id} style={{ background: '#fff', borderRadius: 10, boxShadow: '0 1px 4px rgba(0,0,0,0.04)', padding: 0, minHeight: 260, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'stretch', overflow: 'hidden' }}>
+              <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+                <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
-              <div style={{ padding: '8px 12px 4px 12px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div style={{ fontSize: 15, fontWeight: 500, color: '#222', marginBottom: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.name}</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ color: '#1890ff', fontWeight: 600, fontSize: 16 }}>{item.price}</span>
-                  <span style={{ fontSize: 12, color: '#fff', background: '#ff5722', borderRadius: 8, padding: '2px 8px', marginLeft: 8 }}>{item.tag}</span>
+              <div style={{ padding: '12px 8px 10px 8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: 1, position: 'relative' }}>
+                <div style={{ fontSize: 15, fontWeight: 500, marginBottom: 4 }}>{item.name}</div>
+                <div style={{ color: '#ff4d4f', fontWeight: 600, marginBottom: 6 }}>{item.price}</div>
+                <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: 12, color: '#999' }}>{item.buyers ? `${item.buyers}人已购买` : ''}</span>
+                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', marginLeft: 8 }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1890ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="9" cy="21" r="1" />
+                      <circle cx="20" cy="21" r="1" />
+                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.38-7.39H6" />
+                    </svg>
+                  </span>
                 </div>
               </div>
             </div>

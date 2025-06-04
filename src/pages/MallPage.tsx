@@ -1,85 +1,38 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { initialProducts } from './HomePage';
 
-const products = [
-  {
-    id: 1,
-    name: '皇家猫粮 2kg',
-    price: '¥128',
-    img: 'https://t15.baidu.com/it/u=1992151386,1024749454&fm=224&app=112&f=JPEG?w=500&h=500',
-    tag: '热销',
-    buyers: 1200,
-  },
-  {
-    id: 2,
-    name: '猫爬架 多层豪华',
-    price: '¥299',
-    img: 'https://img0.baidu.com/it/u=3700568182,1427988911&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
-    tag: '新品',
-    buyers: 980,
-  },
-  {
-    id: 3,
-    name: '豆腐猫砂 6L',
-    price: '¥39',
-    img: 'https://img1.baidu.com/it/u=1923027163,1364216940&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
-    tag: '爆款',
-    buyers: 2100,
-  },
-  {
-    id: 4,
-    name: '逗猫棒三件套',
-    price: '¥19',
-    img: 'https://img1.baidu.com/it/u=726222788,1494926947&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-    tag: '热销',
-    buyers: 1560,
-  },
-  {
-    id: 5,
-    name: '智能饮水机',
-    price: '¥159',
-    img: 'https://img0.baidu.com/it/u=906747860,679994589&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
-    tag: '推荐',
-    buyers: 800,
-  },
-  {
-    id: 6,
-    name: '猫咪自动喂食器',
-    price: '¥199',
-    img: 'https://img0.baidu.com/it/u=989315967,1060868218&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-    tag: '新品',
-    buyers: 1340,
-  },
-  {
-    id: 7,
-    name: '宠物背包太空舱',
-    price: '¥89',
-    img: 'https://img1.baidu.com/it/u=2585427602,3353812777&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500',
-    tag: '热销',
-    buyers: 920,
-  },
-  {
-    id: 8,
-    name: '猫咪梳毛刷',
-    price: '¥29',
-    img: 'https://t14.baidu.com/it/u=3574418580,1307549435&fm=224&app=112&f=JPEG?w=500&h=500',
-    tag: '爆款',
-    buyers: 600,
-  },
+const tags = ['全部', '限时特价', '热销推荐', ''];
+const sortOptions = [
+  { label: '综合排序', value: 'default' },
+  { label: '销量优先', value: 'sold' },
+  { label: '价格升序', value: 'priceAsc' },
+  { label: '价格降序', value: 'priceDesc' },
 ];
 
-const tags = ['全部', '热销', '新品', '爆款', '推荐'];
+function getPriceNum(price: string) {
+  return Number((price || '').replace(/[^\d.]/g, '')) || 0;
+}
 
 const MallPage: React.FC = () => {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('全部');
+  const [sort, setSort] = useState('default');
   const navigate = useNavigate();
 
-  const filteredProducts = products.filter(
+  let filteredProducts = initialProducts.filter(
     (item) =>
       (filter === '全部' || item.tag === filter) &&
       (item.name.includes(search) || item.tag.includes(search))
   );
+
+  if (sort === 'sold') {
+    filteredProducts = [...filteredProducts].sort((a, b) => (b.sold || 0) - (a.sold || 0));
+  } else if (sort === 'priceAsc') {
+    filteredProducts = [...filteredProducts].sort((a, b) => getPriceNum(a.price) - getPriceNum(b.price));
+  } else if (sort === 'priceDesc') {
+    filteredProducts = [...filteredProducts].sort((a, b) => getPriceNum(b.price) - getPriceNum(a.price));
+  }
 
   return (
     <div style={{ background: '#f7f8fa', minHeight: '100vh', paddingBottom: 16 }}>
@@ -125,8 +78,30 @@ const MallPage: React.FC = () => {
               boxShadow: '0 1px 4px rgba(0,0,0,0.06)'
             }}
           >
-            {tags.map(tag => <option key={tag} value={tag}>{tag}</option>)}
+            {tags.map(tag => <option key={tag} value={tag}>{tag || '无标签'}</option>)}
           </select>
+        </div>
+        {/* 排序栏 */}
+        <div style={{ display: 'flex', gap: 10, marginTop: 10 }}>
+          {sortOptions.map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => setSort(opt.value)}
+              style={{
+                background: sort === opt.value ? '#1890ff' : '#fff',
+                color: sort === opt.value ? '#fff' : '#1890ff',
+                border: 'none',
+                borderRadius: 16,
+                padding: '4px 16px',
+                fontWeight: 500,
+                fontSize: 11,
+                cursor: 'pointer',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.06)'
+              }}
+            >
+              {opt.label}
+            </button>
+          ))}
         </div>
       </div>
       {/* 商品列表 */}
@@ -140,16 +115,49 @@ const MallPage: React.FC = () => {
               style={{ background: '#fff', borderRadius: 10, boxShadow: '0 1px 4px rgba(0,0,0,0.04)', padding: 0, minHeight: 260, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'stretch', overflow: 'hidden' }}
               onClick={() => navigate(`/product/${item.id}`)}
             >
-              <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
-                <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <div style={{ width: '100%', aspectRatio: '1/1', overflow: 'hidden', borderTopLeftRadius: 10, borderTopRightRadius: 10, position: 'relative' }}>
+                {item.tag && (
+                  <span style={{
+                    position: 'absolute',
+                    top: 8,
+                    left: 8,
+                    background: item.tag === '限时特价' ? '#ff4d4f' : '#1890ff',
+                    color: '#fff',
+                    fontSize: 12,
+                    fontWeight: 600,
+                    borderRadius: 4,
+                    padding: '2px 8px',
+                    zIndex: 2,
+                  }}>{item.tag}</span>
+                )}
+                {item.img.endsWith('.mp4') ? (
+                  <video
+                    src={item.img}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                ) : (
+                  <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                )}
               </div>
               <div style={{ padding: '12px 8px 10px 8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: 1, position: 'relative' }}>
                 <div style={{ fontSize: 15, fontWeight: 500, marginBottom: 4 }}>{item.name}</div>
-                <div style={{ color: '#ff4d4f', fontWeight: 600, marginBottom: 6 }}>{item.price}</div>
+                {item.tag === '限时特价' && item.originPrice ? (
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: 6 }}>
+                    <span style={{ color: '#999', textDecoration: 'line-through', fontSize: 13, marginRight: 8 }}>{item.originPrice}</span>
+                    <span style={{ color: '#ff4d4f', fontWeight: 600, fontSize: 15 }}>{item.price}</span>
+                  </div>
+                ) : (
+                  <div style={{ color: '#ff4d4f', fontWeight: 600, marginBottom: 6 }}>{item.price}</div>
+                )}
+                <div style={{ fontSize: 12, color: '#888', marginBottom: 6 }}>已售{item.sold || 0}+ </div>
                 <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: 12, color: '#999' }}>{item.buyers ? `${item.buyers}人已购买` : ''}</span>
-                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', marginLeft: 8 }}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1890ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <span style={{ fontSize: 12, color: '#999' }}>{item.buyers}人已购买</span>
+                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', marginLeft: 6 }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1890ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="9" cy="21" r="1" />
                       <circle cx="20" cy="21" r="1" />
                       <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61l1.38-7.39H6" />

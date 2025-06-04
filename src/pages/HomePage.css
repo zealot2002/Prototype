@@ -1,0 +1,17 @@
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.swiper-pagination-bullet {
+  background: transparent !important;
+  border: 1.2px solid #222 !important;
+  opacity: 1 !important;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px !important;
+  box-sizing: border-box;
+}
+.swiper-pagination-bullet-active {
+  background: #222 !important;
+  border: 1.2px solid #222 !important;
+} 
